@@ -6,12 +6,12 @@
     <input v-model="newTodo" name="newTodo" />
     <button>Add New Todo</button>
   </form>
-  <h2>{{ newTodo }}</h2>
 </div>
 </template>
 
 <script>
 // creates properties/variables/objects that respond to change and you can know when those things are changed
+// object wrapper
 import { ref } from 'vue';
 
 export default {
@@ -20,7 +20,7 @@ export default {
     const newTodo = ref("");
 
     function addNewTodo() {
-      console.log("Form was submitted");
+      console.log(newTodo.value);
     }
 
     return {
