@@ -1,16 +1,26 @@
 <template>
 <div>
   <h1>Vue 3 Todo App</h1>
-  <form>
+  <form @submit.prevent="addNewTodo">
     <label>New Todo</label>
-    <input />
+    <input name="newTodo" />
     <button>Add New Todo</button>
   </form>
 </div>
 </template>
 
 <script>
-export default {};
+export default {
+  setup() {
+    function addNewTodo() {
+      console.log("Form was submitted");
+    }
+
+    return {
+      addNewTodo,
+    };
+  }
+};
 </script>
 
 <style>
