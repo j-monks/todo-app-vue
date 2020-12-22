@@ -6,6 +6,9 @@
     <input v-model="newTodo" name="newTodo" />
     <button>Add New Todo</button>
   </form>
+  <div v-for="todo in todos" :key="todo.id">
+    <h3>{{ todo.content }}</h3>
+  </div>
 </div>
 </template>
 
@@ -18,13 +21,20 @@ export default {
   setup() {
     // newTodo is similar to having a property in data that is initialized to an empty string 
     const newTodo = ref("");
+    const todos = ref([]);
 
     function addNewTodo() {
-      console.log(newTodo.value);
+      todos.value.push({
+        // id needs to be a unique value
+        id: Date.now(),
+        done: false,
+        content: newTodo.value,
+      })
     }
 
     return {
       // exposing variables to the template
+      todos,
       newTodo,
       addNewTodo,
     };
