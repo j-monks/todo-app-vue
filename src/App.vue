@@ -7,6 +7,7 @@
       <button>Add New Todo</button>
     </form>
     <button @click="markAllDone">Mark All Done</button>
+    <button @click="removeAllTodos">Remove All Todo's</button>
     <ul>
       <li v-for="(todo, index) in todos" :key="todo.id" class="todo">
         <!-- if todo.done is true apply the 'done' class to this element -->
@@ -52,6 +53,10 @@ export default {
       todos.value.forEach((todo) => todo.done = true);
     }
 
+    function removeAllTodos() {
+      todos.value = [];
+    }
+
     return {
       // exposing variables to the template
       todos,
@@ -59,7 +64,8 @@ export default {
       addNewTodo,
       toggleDone,
       removeTodo,
-      markAllDone
+      markAllDone,
+      removeAllTodos
     };
   },
 };
