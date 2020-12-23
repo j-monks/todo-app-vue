@@ -8,7 +8,8 @@
     </form>
     <ul>
       <li v-for="todo in todos" :key="todo.id">
-        <h3>{{ todo.content }}</h3>
+        <!-- if todo.done is true apply the 'done' class to this element -->
+        <h3 :class="{ done: todo.done }" @click="toggleDone(todo)">{{ todo.content }}</h3>
       </li>
     </ul>
   </div>
@@ -32,6 +33,11 @@ export default {
         done: false,
         content: newTodo.value,
       });
+      newTodo.value = "";
+    }
+
+    function toggleDone(todo) {
+      todo.done = !todo.done;
     }
 
     return {
@@ -39,6 +45,7 @@ export default {
       todos,
       newTodo,
       addNewTodo,
+      toggleDone
     };
   },
 };
@@ -66,5 +73,9 @@ select {
   font-family: sans-serif;
   font-size: 1em;
   margin: 0.5em;
+}
+
+.done {
+  text-decoration: line-through;
 }
 </style>
