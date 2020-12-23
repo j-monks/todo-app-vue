@@ -7,9 +7,12 @@
       <button>Add New Todo</button>
     </form>
     <ul>
-      <li v-for="todo in todos" :key="todo.id">
+      <li v-for="(todo, index) in todos" :key="todo.id" class="todo">
         <!-- if todo.done is true apply the 'done' class to this element -->
-        <h3 :class="{ done: todo.done }" @click="toggleDone(todo)">{{ todo.content }}</h3>
+        <h3 :class="{ done: todo.done }" @click="toggleDone(todo)">
+          {{ todo.content }}
+        </h3>
+        <button @click="removeTodo(index)">Remove Todo</button>
       </li>
     </ul>
   </div>
@@ -40,12 +43,17 @@ export default {
       todo.done = !todo.done;
     }
 
+    function removeTodo(index) {
+      todos.value.splice(index, 1);
+    }
+
     return {
       // exposing variables to the template
       todos,
       newTodo,
       addNewTodo,
-      toggleDone
+      toggleDone,
+      removeTodo,
     };
   },
 };
@@ -73,6 +81,10 @@ select {
   font-family: sans-serif;
   font-size: 1em;
   margin: 0.5em;
+}
+
+.todo {
+  cursor: pointer;
 }
 
 .done {
