@@ -6,6 +6,7 @@
       <input v-model="newTodo" name="newTodo" />
       <button>Add New Todo</button>
     </form>
+    <button @click="markAllDone">Mark All Done</button>
     <ul>
       <li v-for="(todo, index) in todos" :key="todo.id" class="todo">
         <!-- if todo.done is true apply the 'done' class to this element -->
@@ -46,6 +47,10 @@ export default {
     function removeTodo(index) {
       todos.value.splice(index, 1);
     }
+    
+    function markAllDone() {
+      todos.value.forEach((todo) => todo.done = true);
+    }
 
     return {
       // exposing variables to the template
@@ -54,6 +59,7 @@ export default {
       addNewTodo,
       toggleDone,
       removeTodo,
+      markAllDone
     };
   },
 };
